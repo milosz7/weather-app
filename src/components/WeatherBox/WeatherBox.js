@@ -5,7 +5,6 @@ import ErrorBox from '../ErrorBox/ErrorBox';
 import { useCallback, useState } from 'react';
 
 const WeatherBox = () => {
-  const API_KEY = '4de604b85e8a70736e1984a5c3d358da';
 
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -15,7 +14,7 @@ const WeatherBox = () => {
     setError(false);
     setLoading(true);
     setWeatherData(null);
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_API}&units=metric`)
   .then(res => {
     if (res.ok) {
       return res.json()
